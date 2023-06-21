@@ -12,9 +12,12 @@ export class ArticlesService {
     return this.prisma.article.create({ data: createArticleDto });
   }
 
-  findAll() {
+  async findAll() {
     // return `This action returns all articles`;
-    return this.prisma.article.findMany();
+    const data = await this.prisma.article.findMany();
+    const total = await this.prisma.article.count();
+
+    return { total: total, data: data };
   }
 
   findOne(id: number) {
