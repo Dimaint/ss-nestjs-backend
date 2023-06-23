@@ -12,8 +12,6 @@ export class EmployeeService {
 
   async findAll(page: number, limit: number) {
     const skip = page * limit;
-    console.log('skip');
-    console.log(skip);
     const data = await this.prisma.employee.findMany({
       skip: skip,
       take: limit,
@@ -27,7 +25,10 @@ export class EmployeeService {
   }
 
   update(id: number, updateEmployeeDto: UpdateEmployeeDto) {
-    return `This action updates a #${id} employee`;
+    return this.prisma.article.update({
+      where: { id },
+      data: updateEmployeeDto,
+    });
   }
 
   remove(id: number) {

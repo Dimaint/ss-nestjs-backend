@@ -28,11 +28,12 @@ model User {
   id Int @id @default(autoincrement())
   username String @unique
   password String
-  role    Role     @default(USER)
+  role    userRole     @default(USER)
   isActive   Boolean  @default(true)
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
   employee Employee?
+  client Client?
 }
 
 model Employee {
@@ -44,11 +45,11 @@ model Employee {
   user   User? @relation(fields: [userId], references: [id])
   userId Int?  @unique 
   phone String?
-  birthday DateTime?
+  birthday DateTime? @db.Date
 }
 
 
-enum Role {
+enum userRole {
   USER
   ADMIN
 }
@@ -56,4 +57,37 @@ enum Role {
 enum Rank {
   Trainer
   HeadTrainer
+}
+
+model Group {
+  id Int @id @default(autoincrement())
+  name String
+  schedule   Schedule @relation(fields: [scheduleId], references: [id])
+  scheduleId Int
+  client Client?
+}
+
+model Schedule {
+  id Int @id @default(autoincrement())
+  groups Group[]
+  name String
+}
+
+model Client {
+  id Int @id @default(autoincrement())
+  first_name String
+  last_name String
+  middle_name String?
+  user   User? @relation(fields: [userId], references: [id])
+  userId Int?  @unique 
+  phone String?
+  birthday DateTime? @db.Date
+  clientType clientType
+  group   Group? @relation(fields: [croupId], references: [id])
+  croupId Int?  @unique 
+}
+
+enum clientType {
+  Child
+  Parent
 }

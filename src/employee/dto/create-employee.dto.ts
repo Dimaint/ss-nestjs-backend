@@ -1,5 +1,7 @@
 import { ApiProperty } from '@nestjs/swagger';
 import { Rank, User } from '@prisma/client';
+import { IsDate } from 'class-validator';
+import { Type } from 'class-transformer';
 
 export class CreateEmployeeDto {
   @ApiProperty()
@@ -18,6 +20,8 @@ export class CreateEmployeeDto {
   phone: string;
 
   @ApiProperty({ required: false })
+  @Type(() => Date)
+  @IsDate()
   birthday: Date;
 
   @ApiProperty({ required: false })
