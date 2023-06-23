@@ -52,7 +52,7 @@ model Group {
   name String
   schedule   Schedule @relation(fields: [scheduleId], references: [id])
   scheduleId Int
-  client Client?
+  client Client[]
 }
 
 model Schedule {
@@ -71,8 +71,8 @@ model Client {
   phone String?
   birthday DateTime? @db.Date
   clientType clientType
-  group   Group? @relation(fields: [croupId], references: [id])
-  croupId Int?  @unique 
+  group   Group? @relation(fields: [groupId], references: [id])
+  groupId Int? 
 }
 
 enum clientType {

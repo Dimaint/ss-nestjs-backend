@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete, Query } from '@nestjs/common';
 import { ClientsService } from './clients.service';
 import { CreateClientDto } from './dto/create-client.dto';
 import { UpdateClientDto } from './dto/update-client.dto';
@@ -13,8 +13,17 @@ export class ClientsController {
   }
 
   @Get()
-  findAll() {
-    return this.clientsService.findAll();
+  findAll(@Query('page') page: string, @Query('limit') limit: string) {
+    return this.clientsService.findAll(+page, +limit);
+  }
+
+  @Get('/group/:id')
+  findByGroup(
+    @Query('page') page: string,
+    @Query('limit') limit: string,
+    @Param('id') id: string,
+  ) {
+    return this.clientsService.findByGroup(+page, +limit, +id);
   }
 
   @Get(':id')

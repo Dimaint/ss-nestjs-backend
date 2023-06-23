@@ -25,7 +25,7 @@ export class EmployeeService {
   }
 
   update(id: number, updateEmployeeDto: UpdateEmployeeDto) {
-    return this.prisma.article.update({
+    return this.prisma.employee.update({
       where: { id },
       data: updateEmployeeDto,
     });
