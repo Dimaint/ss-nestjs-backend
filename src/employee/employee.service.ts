@@ -11,7 +11,7 @@ export class EmployeeService {
   }
 
   async findAll(page: number, limit: number) {
-    const skip = page * limit;
+    const skip = (page - 1) * limit;
     const data = await this.prisma.employee.findMany({
       skip: skip,
       take: limit,
