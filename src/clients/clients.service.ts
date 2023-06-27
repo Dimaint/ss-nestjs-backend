@@ -33,7 +33,7 @@ export class ClientsService {
   }
 
   findOne(id: number) {
-    return `This action returns a #${id} client`;
+    return this.prisma.client.findUnique({ where: { id } });
   }
 
   update(id: number, updateClientDto: UpdateClientDto) {
