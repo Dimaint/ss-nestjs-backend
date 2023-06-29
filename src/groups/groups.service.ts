@@ -66,6 +66,7 @@ export class GroupsService {
       where: { id },
       include: {
         client: true,
+        employes: true,
       },
     });
     return data;
