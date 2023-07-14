@@ -19,11 +19,11 @@ export class ClientsController {
 
   @Get('/group/:id')
   findByGroup(
-    @Query('page') page: string,
-    @Query('limit') limit: string,
+    @Query('page') page = 1,
+    @Query('limit') limit = 100,
     @Param('id') id: string,
   ) {
-    return this.clientsService.findByGroup(+page, +limit, +id);
+    return this.clientsService.findByGroup(page, limit, +id);
   }
 
   @Get(':id')

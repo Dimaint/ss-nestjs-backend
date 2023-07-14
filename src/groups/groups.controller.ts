@@ -11,6 +11,7 @@ import {
 import { GroupsService } from './groups.service';
 import { CreateGroupDto } from './dto/create-group.dto';
 import { UpdateGroupDto } from './dto/update-group.dto';
+import { Public } from 'src/auth/auth.decorator';
 
 @Controller('groups')
 export class GroupsController {
@@ -25,7 +26,6 @@ export class GroupsController {
   findAll(@Query('page') page: string, @Query('limit') limit: string) {
     return this.groupsService.findAll(+page, +limit);
   }
-
   @Get('employee/:id')
   findByEmployee(
     @Query('page') page = 1,

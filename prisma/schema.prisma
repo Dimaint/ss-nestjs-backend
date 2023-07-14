@@ -75,9 +75,20 @@ model Client {
   clientType clientType
   group   Group? @relation(fields: [groupId], references: [id])
   groupId Int? 
+  visitLog VisitLog[]
 }
 
 enum clientType {
   Child
   Parent
+}
+
+model VisitLog {
+  id Int @id @default(autoincrement())
+  date DateTime? @db.Date
+  client   Client @relation(fields: [clientId], references: [id])
+  clientId Int
+  is_visited Boolean
+  is_reason Boolean
+  description String?
 }
