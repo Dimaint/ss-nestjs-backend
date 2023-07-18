@@ -92,3 +92,18 @@ model VisitLog {
   is_reason Boolean
   description String?
 }
+
+model Files {
+  id Int @id @default(autoincrement())
+  originalname String
+  mimetype String
+  fileType String
+  b64 String
+  size Int
+  objectId Int
+}
+
+enum fileType {
+  avatar
+  event
+}

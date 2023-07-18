@@ -9,9 +9,10 @@ import { ClientsModule } from './clients/clients.module';
 import { GroupsModule } from './groups/groups.module';
 import { SchedulesModule } from './schedules/schedules.module';
 import { VisitLogModule } from './visit-log/visit-log.module';
+import { FilesModule } from './files/files.module';
 
 @Module({
-  imports: [PrismaModule, AuthModule, UsersModule, EmployeeModule, ClientsModule, GroupsModule, SchedulesModule, VisitLogModule],
+  imports: [PrismaModule, AuthModule, UsersModule, EmployeeModule, ClientsModule, GroupsModule, SchedulesModule, VisitLogModule, FilesModule],
   controllers: [AppController],
   providers: [AppService],
 })
