@@ -33,6 +33,7 @@ export class FilesController {
   @Public()
   @Get(':id')
   findOne(@Param('id') id: string, @Query('fileType') fileType = 'avatar') {
+    console.log('get file')
     return this.filesService.findOne(+id, fileType);
   }
 
@@ -50,9 +51,9 @@ export class FilesController {
     @Query('fileType') fileType = 'avatar',
   ) {
     console.log('upload file');
-    // console.log(file);
+    console.log(file);
     // console.log(file.buffer.toString('base64'));
     const b64 = file.buffer.toString('base64');
-    return this.filesService.saveFile(objectId, file, b64, fileType);
+    return this.filesService.saveFile(+objectId, file, b64, fileType);
   }
 }

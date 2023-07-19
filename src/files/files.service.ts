@@ -15,10 +15,10 @@ export class FilesService {
     return `This action returns all files`;
   }
 
-  findOne(id: number, fileType: string) {
+  findOne(objectId: number, fileType: string) {
     return this.prisma.files.findFirst({
       where: {
-        id,
+        objectId,
         fileType,
       },
     });
@@ -28,12 +28,17 @@ export class FilesService {
     return `This action removes a #${id} file`;
   }
 
-  saveFile(
+  async saveFile(
     objectId: number,
     file: Express.Multer.File,
     b64: any,
     fileType: string,
   ) {
+    await this.prisma.files.deleteMany({
+      where: {
+        objectId,
+      },
+    });
     return this.prisma.files.create({
       data: {
         originalname: file.originalname,
