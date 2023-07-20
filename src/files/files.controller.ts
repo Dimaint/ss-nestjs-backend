@@ -50,8 +50,6 @@ export class FilesController {
     @Query('objectId') objectId = 1,
     @Query('fileType') fileType = 'avatar',
   ) {
-    console.log('upload file');
-    console.log(file);
     // console.log(file.buffer.toString('base64'));
     const b64 = file.buffer.toString('base64');
     return this.filesService.saveFile(+objectId, file, b64, fileType);
