@@ -47,8 +47,8 @@ export class FilesController {
   @UseInterceptors(FileInterceptor('file'))
   uploadFile(
     @UploadedFile() file: Express.Multer.File,
-    @Query('objectId') objectId = 1,
-    @Query('fileType') fileType = 'avatar',
+    @Query('objectId') objectId: string,
+    @Query('fileType') fileType: string,
   ) {
     // console.log(file.buffer.toString('base64'));
     const b64 = file.buffer.toString('base64');

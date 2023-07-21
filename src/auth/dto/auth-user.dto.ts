@@ -1,5 +1,5 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { userRole } from '@prisma/client';
+// import { userRole } from '@prisma/client';
 
 export class AuthDto {
   @ApiProperty({ required: true })
@@ -20,5 +20,5 @@ export class RegistrationDto {
   confirmPassword: string;
 
   @ApiProperty({ required: true, default: 'USER' })
-  role: userRole;
+  role: [];
 }
