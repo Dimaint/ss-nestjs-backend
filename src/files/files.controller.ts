@@ -33,7 +33,7 @@ export class FilesController {
   @Public()
   @Get(':id')
   findOne(@Param('id') id: string, @Query('fileType') fileType = 'avatar') {
-    console.log('get file')
+    console.log('get file');
     return this.filesService.findOne(+id, fileType);
   }
 

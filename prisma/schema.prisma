@@ -64,6 +64,13 @@ model Schedule {
   groups Group[]
   name String
 }
+model ScheduleDay {
+  id Int @id @default(autoincrement())
+  weekDay Int
+  name String
+  startTime String
+  endTime String
+}
 
 model Client {
   id Int @id @default(autoincrement())
