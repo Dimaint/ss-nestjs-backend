@@ -2,6 +2,7 @@ import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/commo
 import { SchedulesService } from './schedules.service';
 import { CreateScheduleDto } from './dto/create-schedule.dto';
 import { UpdateScheduleDto } from './dto/update-schedule.dto';
+import { Public } from '../auth.decorator';
 
 @Controller('schedules')
 export class SchedulesController {
@@ -17,6 +18,7 @@ export class SchedulesController {
     return this.schedulesService.findAll();
   }
 
+  @Public()
   @Get(':id')
   findOne(@Param('id') id: string) {
     return this.schedulesService.findOne(+id);

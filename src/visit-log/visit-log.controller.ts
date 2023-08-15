@@ -2,6 +2,7 @@ import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/commo
 import { VisitLogService } from './visit-log.service';
 import { CreateVisitLogDto } from './dto/create-visit-log.dto';
 import { UpdateVisitLogDto } from './dto/update-visit-log.dto';
+import { Public } from '../auth.decorator';
 
 @Controller('visit-log')
 export class VisitLogController {
@@ -12,9 +13,9 @@ export class VisitLogController {
     console.log('createVisitLogDto controller');
     return this.visitLogService.create(createVisitLogDto);
   }
-
+  @Public()
   @Get('/group/:groupId')
-  findAllByGroupId(@Param('id') groupId: string) {
+  findAllByGroupId(@Param('groupId') groupId: string) {
     return this.visitLogService.findAllByGroupId(+groupId);
   }
 

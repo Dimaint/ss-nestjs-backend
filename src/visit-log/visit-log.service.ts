@@ -25,8 +25,8 @@ export class VisitLogService {
   }
 
   async findAllByGroupId(id: number) {
-    const data = await this.prisma.client.findMany({
-      where: { group: { id } },
+    const data = await this.prisma.visitLog.findMany({
+      where: { clientId: id },
     });
     return data;
   }

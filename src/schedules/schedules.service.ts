@@ -1,9 +1,12 @@
 import { Injectable } from '@nestjs/common';
 import { CreateScheduleDto } from './dto/create-schedule.dto';
 import { UpdateScheduleDto } from './dto/update-schedule.dto';
+import { PrismaService } from 'src/prisma/prisma.service';
 
 @Injectable()
 export class SchedulesService {
+  constructor(private prisma: PrismaService) {}
+  
   create(createScheduleDto: CreateScheduleDto) {
     return 'This action adds a new schedule';
   }
@@ -12,8 +15,14 @@ export class SchedulesService {
     return `This action returns all schedules`;
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} schedule`;
+  async findOne(id: number) {
+    const data = await this.prisma.schedule.findUnique({
+      where: { id },
+      include: {
+        scheduleDays: true,
+      },
+    });
+    return data;
   }
 
   update(id: number, updateScheduleDto: UpdateScheduleDto) {
