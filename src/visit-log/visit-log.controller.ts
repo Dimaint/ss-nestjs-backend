@@ -20,8 +20,8 @@ export class VisitLogController {
   }
 
   @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.visitLogService.findOne(+id);
+  findByUserId(@Param('id') id: string) {
+    return this.visitLogService.findByUserId(+id);
   }
 
   @Patch(':id')

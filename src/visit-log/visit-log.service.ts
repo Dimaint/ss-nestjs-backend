@@ -31,8 +31,11 @@ export class VisitLogService {
     return data;
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} visitLog`;
+  async findByUserId(id: number) {
+    const data = await this.prisma.visitLog.findMany({
+      where: { clientId: id },
+    });
+    return data;
   }
 
   update(id: number, updateVisitLogDto: UpdateVisitLogDto) {
